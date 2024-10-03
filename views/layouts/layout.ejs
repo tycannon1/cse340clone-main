@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
 
@@ -6,12 +6,10 @@
 <div id="wrapper">
     <%- include('../partials/header') %>
     <%- include('../partials/navigation') %>
-<main> 
-<%- body %>
-</main> 
-
-<%- include ('../partials/footer') %>
-
-</div> 
+    <main>
+        <%- body %>
+        <%- include ('../partials/footer') %> <!-- Move the footer inside the main -->
+    </main> 
+</div>
 </body>
 </html>

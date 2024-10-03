@@ -1,6 +1,176 @@
-/******* Change Box Model ***************/
+/* Base Styles (Mobile First) */
+
+/* General reset */
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+header .siteName {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+header #tools a {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: black;
+}
+
+nav ul li {
+  color: white;
+  margin: 0 10px;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: left;
+}
+
+#delorean-container {
+  position: relative;
+  width: 100%; /* Adjust based on your layout */
+}
+
+#DMC {
+  position: absolute;
+  top: 10px; /* Adjust the positioning */
+  left: 10px; /* Center it more to the left */
+  width: 50%; /* Smaller size */
+  background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#delorean-container img {
+  display: block;
+  width: 100%; /* Ensure image scales properly */
+  height: auto;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
+
+#DMC button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+#DMC button:hover {
+  background-color: #0056b3;
+}
+
+#reviews ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#upgrades ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+  gap: 10px;
+}
+
+#upgrades ul li {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+#upgrades ul li img {
+  display: block;
+  margin: 0 auto 10px;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    border: 2px solid #333;
+    background-color: #f0f0f0;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+footer {
+    width: 100%; /* Ensure the footer takes full width */
+    background-color: rgba(255, 255, 255, 0.9); /* Background for the footer */
+    padding: 10px 0; /* Padding around the footer content */
+    text-align: center; /* Center the footer text */
+    position: relative; /* Position relative to maintain flow within main */
+}
+
+  
+  #reviews, #upgrades {
+    width: 45%; /* Width for both sections */
+  }
+
+  
+  #reviews-upgrades-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Make sure it takes full width */
+    margin-top: 20px; /* Space above the sections */
+  }
+
+  
+  #reviews {
+    margin-right: 20px; /* Space between reviews and upgrades */
+  }
+
+  
+  #upgrades {
+    margin-left: 20px; /* Space between upgrades and reviews */
+  }
+
+  
+  #DMC {
+    position: absolute;
+    top: 20px; /* Ensure DMC box stays positioned correctly */
+    left: 20px; /* Centered-left */
+    width: 30%; /* Smaller size */
+    padding: 15px;
+  }
 }
