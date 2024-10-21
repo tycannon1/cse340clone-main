@@ -126,12 +126,15 @@ img {
     justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
     border: 2px solid #333;
-    background-color: #f0f0f0;
+    background-image: url("../images/site/checkerboard.jpg"); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
     padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-}
+  }
 
 
 footer {
