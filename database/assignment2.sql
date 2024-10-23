@@ -1,21 +1,27 @@
-INSERT INTO account (first_name, last_name, email, password)
+INSERT INTO account (account_firstname, account_lastname, account_email, account_password)
 VALUES ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
 
 UPDATE account
 SET account_type = 'Admin'
-WHERE email = 'tony@starkent.com';
+WHERE account_email = 'tony@starkent.com';
 
+-- Checking to see if it worked:
+SELECT account_firstname, account_lastname, account_email, account_type
+FROM account
+WHERE account_email = 'tony@starkent.com';
+
+-- Delete Statement:
 DELETE FROM account
-WHERE email = 'tony@starkent.com';
+WHERE account_email = 'tony@starkent.com';
 
 UPDATE inventory
 SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
 WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
-SELECT inventory.inv_make, inventory.inv_model, classification.classification_name
-FROM inventory
-INNER JOIN classification ON inventory.classification_id = classification.classification_id
-WHERE classification.classification_name = 'Sport';
+SELECT inv.inv_make, inv.inv_model, class.classification_name
+FROM inventory inv
+INNER JOIN classification class ON inv.classification_id = class.classification_id
+WHERE class.classification_name = 'Sport';
 
 UPDATE inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
