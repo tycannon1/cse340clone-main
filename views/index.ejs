@@ -31,3 +31,19 @@
         </ul>
     </div>
 </div>
+<div id="car-cards">
+    <% if (typeof cars !== 'undefined' && cars.length) { %>
+        <% cars.forEach(car => { %>
+            <div class="car-card">
+                <img src="<%= car.inv_image %>" alt="<%= car.inv_make %> <%= car.inv_model %>">
+                <h2><%= car.inv_make %> <%= car.inv_model %> (<%= car.inv_year %>)</h2>
+                <p><%= car.inv_description %></p>
+                <p>Price: $<%= car.inv_price %></p>
+                <p>Miles: <%= car.inv_miles %></p>
+                <p>Color: <%= car.inv_color %></p>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No cars available in this category.</p>
+    <% } %>
+</div>

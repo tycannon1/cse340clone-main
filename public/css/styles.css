@@ -18,7 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
 }
 
 header .siteName {
@@ -156,6 +156,9 @@ footer {
     justify-content: space-between;
     width: 100%; /* Make sure it takes full width */
     margin-top: 20px; /* Space above the sections */
+    background-color: white;
+    padding: 20px;
+
   }
 
   
@@ -176,4 +179,37 @@ footer {
     width: 30%; /* Smaller size */
     padding: 15px;
   }
+}
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.car-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: calc(33% - 40px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.car-item h2 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.car-item img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.car-item p {
+  font-size: 1em;
+  margin: 5px 0;
+}
+.car-item.expanded {
+  max-height: none;
 }

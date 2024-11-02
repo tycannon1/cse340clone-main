@@ -8,8 +8,12 @@
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
+const db = require('./config/db') // Add this line for database connection
 const app = express()
 const static = require("./routes/static")
+
+const inventory = require('./routes/inventory');
+app.use(inventory);
 
 /* ***********************
  * Serve Static Files
