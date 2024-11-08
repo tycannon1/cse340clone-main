@@ -71,8 +71,11 @@ const db = require('./config/db') // Add this line for database connection
 const app = express()
 const static = require("./routes/static")
 
+
 const inventory = require('./routes/inventory');
 const baseController = require("./controllers/baseController")
+const errorHandler = require('./middleware/errorMiddleware');
+
 
 /* ***********************
  * Serve Static Files
@@ -111,3 +114,6 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+app.use(errorHandler);
+
+
