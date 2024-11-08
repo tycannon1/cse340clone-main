@@ -16,4 +16,7 @@ const invCont = require("../controllers/invController");
 // Route to display inventory items by classification
 router.get("/type/:classificationId", invController.buildByClassificationId)
 
+router.get("/detail/:inventoryId", invCont.buildDetailByInventoryId);
+
 module.exports = router
+

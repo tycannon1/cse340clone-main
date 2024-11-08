@@ -213,3 +213,122 @@ footer {
 .car-item.expanded {
   max-height: none;
 }
+
+/* Vehicle Grid */
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+#inv-display li {
+  width: calc(33.33% - 20px);
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#inv-display li img {
+  max-width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+.namePrice {
+  padding: 10px;
+}
+
+.namePrice h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.namePrice span {
+  display: block;
+  font-size: 1.2rem;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+/* Vehicle Details Page */
+.vehicle-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+}
+
+.vehicle-detail {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.vehicle-detail img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 20px;
+  background-color: white;
+  justify-content: center;
+}
+
+.vehicle-detail .vehicle-info {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  background-color: white;
+}
+
+.vehicle-detail .vehicle-info p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  background-color: white;
+}
+
+.vehicle-detail .vehicle-info strong {
+  color: #333;
+  background-color: white;
+}
+
+.vehicle-detail h1 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  background-color: white;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #inv-display li {
+    width: calc(50% - 20px);
+  }
+
+  .vehicle-detail-container {
+    padding: 10px;
+  }
+
+  .vehicle-detail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #inv-display li {
+    width: 100%;
+    background-color: white;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    background-color: white;
+  }
+}
