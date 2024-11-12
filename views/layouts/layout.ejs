@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+  <%- include('../partials/head', { title: title }) %> <!-- Pass title to the head partial -->
 
-<body>
-<div id="wrapper">
-    <%- include('../partials/header') %>
-    <%- include('../partials/navigation') %>
-    <main>
+  <body>
+    <div id="wrapper">
+      <%- include('../partials/header') %>
+      <%- include('../partials/navigation') %>
+      <main>
         <%- body %>
-        <%- include ('../partials/footer') %> <!-- Move the footer inside the main -->
-    </main> 
-</div>
-</body>
+        <%- include('../partials/footer') %> <!-- Move the footer inside the main -->
+      </main>
+    </div>
+  </body>
 </html>
