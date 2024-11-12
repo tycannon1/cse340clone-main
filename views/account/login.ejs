@@ -1,13 +1,14 @@
 <h1><%= title %></h1>
 
 <!-- Flash Message Display -->
-<% if (messages && messages.length > 0) { %>
-  <div class="flash-messages">
-    <% messages.forEach(function(msg) { %>
-      <p><%= msg %></p>
-    <% }) %>
-  </div>
+<% if (messages && Array.isArray(messages) && messages.length > 0) { %>
+    <div class="flash-messages">
+        <% messages.forEach(function(msg) { %>
+            <p><%= msg %></p>
+        <% }) %>
+    </div>
 <% } %>
+
 
 <!-- Login Form -->
 <form action="/account/login" method="POST">
