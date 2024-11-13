@@ -6,3 +6,5 @@ const accountController = require("../controllers/accountController")
 router.get("/login", accountController.buildLogin)
 
 module.exports = router
+
+router.get("/register", accountController.buildRegister)

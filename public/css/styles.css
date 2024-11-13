@@ -332,3 +332,91 @@ footer {
     background-color: white;
   }
 }
+/* Form container box */
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+/* Title styling */
+.form-container h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Flash message styling */
+.flash-messages {
+  background-color: #ffefc4;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: #856404;
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+/* Input field styling */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+/* Button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #5cb85c;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+/* Link styling */
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+p a {
+  color: #5cb85c;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+.box {
+  background-color: white;
+  padding: 3%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
