@@ -79,6 +79,8 @@ const inventory = require('./routes/inventory');
 const baseController = require("./controllers/baseController")
 const errorHandler = require('./middleware/errorMiddleware');
 
+const bodyParser = require("body-parser")
+
 
 /* ***********************
  * Serve Static Files
@@ -112,6 +114,15 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// Make flash messages available in all views
+app.use(function(req, res, next) {
+  res.locals.messages = req.flash('notice');  // Retrieve 'notice' messages
+  next();
+});
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * Routes
