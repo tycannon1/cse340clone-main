@@ -18,5 +18,8 @@ router.get("/type/:classificationId", invController.buildByClassificationId)
 
 router.get("/detail/:inventoryId", invCont.buildDetailByInventoryId);
 
+router.get("/", invController.managementView);
+
+
 module.exports = router
 
