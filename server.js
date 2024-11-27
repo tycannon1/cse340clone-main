@@ -17,11 +17,11 @@ const pool = require('./database/');
 const utilities = require('./utilities');
 const bodyParser = require("body-parser");
 
-const inventory = require('./routes/inventoryRoute');
+const inventoryRoute = require('./routes/inventoryRoute'); // Declare this once
 const baseController = require("./controllers/baseController");
 const errorHandler = require('./middleware/errorMiddleware');
 const connectFlash = require("connect-flash");
-
+const invController = require('./controllers/invController');
 
 /* ***********************
  * Serve Static Files
@@ -60,21 +60,87 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+// Classification validation middleware
+const classificationValidationMiddleware = (req, res, next) => {
+  const { classificationName } = req.body;
+  if (!classificationName || !/^[a-zA-Z0-9]+$/.test(classificationName)) {
+    req.flash('errorMessage', 'Invalid classification name');
+    return res.redirect('/inv/add-classification');
+  }
+  next();
+};
+
+const inventoryValidationMiddleware = (req, res, next) => {
+  const { name, description, price, classificationId } = req.body;
+
+  console.log("Form data:", req.body);
+
+  // Check if required fields are filled
+  if (!name || !description || !price || !classificationId) {
+    req.flash('errorMessage', 'All fields are required.');
+    console.log("Validation failed, redirecting..."); // Debugging log
+
+    return res.redirect('/inv/add-inventory');
+  }
+
+  // Optional: You can add additional validation, for example, checking if price is a valid number
+  if (isNaN(price)) {
+    req.flash('errorMessage', 'Price must be a valid number.');
+    console.log("Price validation failed, redirecting..."); // Debugging log
+
+    return res.redirect('/inv/add-inventory');
+  }
+
+  next();
+};
+
 /* ***********************
  * Routes
  *************************/
 app.use(static);
-const inventoryRoute = require('./routes/inventoryRoute');
-const accountRoute = require("./routes/accountRoute");
 
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome));
 
+
+
 // Inventory routes
-app.use("/inv", inventoryRoute);
+app.use("/inv", inventoryRoute); // Use inventoryRoute
 
 // Account routes
+const accountRoute = require("./routes/accountRoute");
 app.use("/account", accountRoute);
+
+app.get('/inv/add-inventory', (req, res) => {
+  res.render('add-inventory'); // Make sure this view exists
+});
+
+// Add the middleware for the specific route in the inventory route handling
+// This will now apply to the add-classification route under /inv
+app.post('/inv/add-classification', classificationValidationMiddleware, (req, res) => {
+  // Your logic for handling the classification add form
+  // This will run only after the classification validation is successful
+});
+
+// Add Inventory Validation Middleware for the specific route
+// POST route for Add Inventory
+app.post('/inv/add-inventory', utilities.inventoryValidationMiddleware, (req, res) => {
+  const { make, model, year, price, miles, color, image, thumbnail } = req.body;
+
+  console.log('Form submitted to add inventory');
+
+
+  // Your code to add inventory to the database
+  // Example: invModel.addInventory(make, model, year, price, miles, color, image, thumbnail);
+
+  req.flash("successMessage", "Inventory added successfully.");
+  res.redirect("/inv"); // Redirect after successful addition
+});
+
+
+
+
+
 
 // File Not Found Route - must be last route in list
 app.use((req, res, next) => {

@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<main>
+<div class="management-container">
+
+  <h1><%= title %></h1>
+  <p>Add a new classification to your inventory below. The classification name cannot contain spaces or special characters.</p>
+
+  <!-- Flash message for success or error -->
+  <% if (flashMessage) { %>
+    <div class="flash-message">
+      <p><%= flashMessage %></p>
+    </div>
+  <% } %>
+
+  <!-- Form for adding a new classification -->
+  <form action="/inv/add-classification" method="POST" id="addClassificationForm">
+    <label for="classificationName">Classification Name:</label>
+    <input
+      type="text"
+      id="classificationName"
+      name="classificationName"
+      required
+      pattern="^[a-zA-Z0-9]+$"
+      title="Classification name cannot contain spaces or special characters."
+      placeholder="Enter classification name"
+    />
+
+    <button type="submit">Add Classification</button>
+  </form>
+</div>
+</main>
+<%- include('../partials/footer') %>

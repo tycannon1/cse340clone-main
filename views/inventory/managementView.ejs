@@ -1,11 +1,14 @@
 <%- include('../partials/header') %>
 <main>
+    <div class="management-container">
   <h1><%= title %></h1>
   <p><%= introHtml %></p>
   <nav>
-    <ul>
-      <%- nav %>
-    </ul>
+    <div class="management-buttons">
+        <a href="/inv/add-classification" class="button">Add New Classification</a>
+        <a href="/inv/add-inventory" class="button">Add New Inventory</a>
+      </div>
   </nav>
+</div>
 </main>
 <%- include('../partials/footer') %>

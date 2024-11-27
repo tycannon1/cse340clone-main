@@ -1,7 +1,13 @@
-<div id="reviews-upgrades-container">
-    <h1>Welcome To CSE Motors!</h1>
-    <%- messages() %>
-</div>
+<% if (messages) { %>
+    <% Object.keys(messages).forEach(function(type) { %>
+      <% messages[type].forEach(function(message) { %>
+        <div class="alert <%= type %>">
+          <%= message %>
+        </div>
+      <% }) %>
+    <% }) %>
+  <% } %>
+  
 
 <div id="delorean-container">
     <img src="/images/vehicles/delorean.jpg" alt="Delorean">

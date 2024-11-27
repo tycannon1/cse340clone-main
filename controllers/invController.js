@@ -54,6 +54,97 @@ invCont.managementView = async (req, res, next) => {
   }
 };
 
+invCont.addClassificationView = async (req, res, next) => {
+  try {
+    let nav = await utilities.getNav(); // Navigation bar
+    res.render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      flashMessage: req.flash('flashMessage') || '',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+invCont.processAddClassification = async (req, res, next) => {
+  const { classificationName } = req.body;
+  try {
+    const result = await invModel.addClassification(classificationName);
+    if (result) {
+      await utilities.updateNavigation(); // Refresh the navigation bar
+      req.flash('flashMessage', 'Classification added successfully!');
+      res.redirect("/inv/management");
+    } else {
+      req.flash('errorMessage', 'Failed to add classification. Please try again.');
+      res.redirect("/inv/add-classification");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Display Add Inventory View
+invCont.addInventoryView = async (req, res) => {
+  try {
+    const classificationDropdown = await utilities.buildClassificationList();
+    res.render("inventory/add-inventory", {
+      title: "Add Inventory",
+      classificationDropdown,
+      notice: req.flash("notice") // Notice message will be displayed here
+    });
+  } catch (error) {
+    req.flash("notice", "Error loading the form. Please try again.");
+    res.redirect("/inv");
+  }
+};
+
+
+// Process Add Inventory Form Submission
+invCont.processAddInventory = async (req, res) => {
+  const { classification_id, make, model, year, description, price, miles, color, image, thumbnail } = req.body;
+
+  try {
+    const result = await invModel.addInventoryItem({
+      classification_id,
+      make,
+      model,
+      year,
+      description,
+      price,
+      miles,
+      color,
+      image,
+      thumbnail,
+    });
+
+    if (result) {
+      req.flash("notice", "Vehicle added successfully!");
+      res.redirect("/inv");
+    } else {
+      throw new Error("Failed to add inventory item.");
+    }
+  } catch (error) {
+    req.flash("notice", "Error adding inventory item. Please check your input and try again.");
+    const classificationDropdown = await utilities.buildClassificationList(classification_id);
+    res.render("inventory/add-inventory", {
+      title: "Add Inventory",
+      classificationDropdown,
+      make,
+      model,
+      year,
+      description,
+      price,
+      miles,
+      color,
+      image,
+      thumbnail,
+      notice: req.flash("notice"),
+    });
+  }
+};
+
+
 
 
 module.exports = invCont; // Export the controller functions
