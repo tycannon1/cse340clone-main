@@ -1,29 +1,28 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 
-// Controller functions for inventory
 const invCont = {};
 
 // Build inventory by classification view
-invCont.buildByClassificationId = async function (req, res, next) {
+invCont.buildByClassificationId = async (req, res, next) => {
   const classification_id = req.params.classificationId;
   try {
     const data = await invModel.getInventoryByClassificationId(classification_id);
     const grid = await utilities.buildClassificationGrid(data);
-    let nav = await utilities.getNav();
+    const nav = await utilities.getNav();
     const className = data[0].classification_name;
     res.render("./inventory/classification", {
-      title: className + " vehicles",
+      title: `${className} vehicles`,
       nav,
       grid,
     });
   } catch (error) {
-    next(error); // Pass any errors to error handling middleware
+    next(error);
   }
 };
 
 // Build inventory detail by inventory ID
-invCont.buildDetailByInventoryId = async function (req, res, next) {
+invCont.buildDetailByInventoryId = async (req, res, next) => {
   try {
     const inventory_id = req.params.inventoryId;
     const vehicle = await invModel.getVehicleByInventoryId(inventory_id);
@@ -35,28 +34,29 @@ invCont.buildDetailByInventoryId = async function (req, res, next) {
       detailHtml,
     });
   } catch (error) {
-    next(error); // Pass any errors to error handling middleware
+    next(error);
   }
 };
 
 // Management view (for inventory management page)
 invCont.managementView = async (req, res, next) => {
   try {
-    const nav = await utilities.getNav(); // Get navigation menu
+    const nav = await utilities.getNav();
     const introHtml = "Welcome to the Inventory Management Page!";
     res.render("./inventory/managementView", {
       title: "Inventory Management",
       nav,
-      introHtml, // Add content to display
+      introHtml,
     });
   } catch (error) {
-    next(error); // Handle errors
+    next(error);
   }
 };
 
+// Add Classification View
 invCont.addClassificationView = async (req, res, next) => {
   try {
-    let nav = await utilities.getNav(); // Navigation bar
+    let nav = await utilities.getNav();
     res.render("./inventory/add-classification", {
       title: "Add Classification",
       nav,
@@ -67,12 +67,13 @@ invCont.addClassificationView = async (req, res, next) => {
   }
 };
 
+// Process Add Classification
 invCont.processAddClassification = async (req, res, next) => {
   const { classificationName } = req.body;
   try {
     const result = await invModel.addClassification(classificationName);
     if (result) {
-      await utilities.updateNavigation(); // Refresh the navigation bar
+      await utilities.updateNavigation();
       req.flash('flashMessage', 'Classification added successfully!');
       res.redirect("/inv/management");
     } else {
@@ -91,7 +92,7 @@ invCont.addInventoryView = async (req, res) => {
     res.render("inventory/add-inventory", {
       title: "Add Inventory",
       classificationDropdown,
-      notice: req.flash("notice") // Notice message will be displayed here
+      notice: req.flash("notice")
     });
   } catch (error) {
     req.flash("notice", "Error loading the form. Please try again.");
@@ -99,11 +100,9 @@ invCont.addInventoryView = async (req, res) => {
   }
 };
 
-
 // Process Add Inventory Form Submission
 invCont.processAddInventory = async (req, res) => {
   const { classification_id, make, model, year, description, price, miles, color, image, thumbnail } = req.body;
-
   try {
     const result = await invModel.addInventoryItem({
       classification_id,
@@ -144,7 +143,4 @@ invCont.processAddInventory = async (req, res) => {
   }
 };
 
-
-
-
-module.exports = invCont; // Export the controller functions
+module.exports = invCont;

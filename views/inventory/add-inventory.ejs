@@ -1,134 +1,122 @@
 <%- include('../partials/header') %>
 
 <% if (notice) { %>
-    <div class="alert alert-info"><%= notice %></div>
-  <% } %>
-  
-  <form action="/inv/add-inventory" method="post">
-    <!-- Form fields go here -->
-  </form>
+  <div class="alert alert-info"><%= notice %></div>
+<% } %>
 
 <main>
-    <div class="management-container">
-  <h1>Add a New Vehicle</h1>
-  <p>Add a new vehicle to your inventory below. Please make sure all fields are filled out correctly.</p>
+  <div class="management-container">
+    <h1>Add a New Vehicle</h1>
+    <p>Add a new vehicle to your inventory below. Please make sure all fields are filled out correctly.</p>
 
-  <!-- Flash message for success or error -->
-  <% if (locals.notice) { %>
-    <div class="flash-message">
-      <p><%= notice %></p>
-    </div>
-  <% } %>
+    <!-- Form for adding a new vehicle -->
+    <form action="/inv/add-inventory" method="POST" novalidate>
+      <!-- Select Classification -->
+      <label for="classificationList">Classification:</label>
+      <%- classificationDropdown %>
 
-  <!-- Form for adding a new vehicle -->
-  <form action="/inv/add-inventory" method="POST" novalidate>
-    
-    <!-- Select Classification -->
-    <label for="classificationList">Classification:</label>
-    <%= classificationDropdown %>
+      <!-- Make -->
+      <label for="make">Make:</label>
+      <input 
+        type="text" 
+        id="make" 
+        name="make" 
+        value="<%= make || '' %>" 
+        required 
+        placeholder="Enter the make of the vehicle"
+      />
 
-    <!-- Make -->
-    <label for="make">Make:</label>
-    <input 
-      type="text" 
-      id="make" 
-      name="make" 
-      value="<%= make || '' %>" 
-      required 
-      placeholder="Enter the make of the vehicle"
-    />
+      <!-- Model -->
+      <label for="model">Model:</label>
+      <input 
+        type="text" 
+        id="model" 
+        name="model" 
+        value="<%= model || '' %>" 
+        required 
+        placeholder="Enter the model of the vehicle"
+      />
 
-    <!-- Model -->
-    <label for="model">Model:</label>
-    <input 
-      type="text" 
-      id="model" 
-      name="model" 
-      value="<%= model || '' %>" 
-      required 
-      placeholder="Enter the model of the vehicle"
-    />
+      <!-- Year -->
+      <label for="year">Year:</label>
+      <input 
+        type="number" 
+        id="year" 
+        name="year" 
+        value="<%= year || '' %>" 
+        required 
+        min="1886" 
+        max="2024"
+        placeholder="Enter the year of the vehicle"
+      />
 
-    <!-- Year -->
-    <label for="year">Year:</label>
-    <input 
-      type="number" 
-      id="year" 
-      name="year" 
-      value="<%= year || '' %>" 
-      required 
-      min="1886" 
-      max="2024"
-      placeholder="Enter the year of the vehicle"
-    />
+      <!-- Description -->
+      <label for="description">Description:</label>
+      <textarea 
+        id="description" 
+        name="description" 
+        required 
+        placeholder="Enter a brief description of the vehicle"><%= description || '' %></textarea>
 
-    <!-- Description -->
-    <label for="description">Description:</label>
-    <textarea 
-      id="description" 
-      name="description" 
-      required 
-      placeholder="Enter a brief description of the vehicle"><%= description || '' %></textarea>
+      <!-- Price -->
+      <label for="price">Price:</label>
+      <input 
+        type="number" 
+        id="price" 
+        name="price" 
+        value="<%= price || '' %>" 
+        required 
+        step="0.01"
+        placeholder="Enter the price of the vehicle"
+      />
 
-    <!-- Price -->
-    <label for="price">Price:</label>
-    <input 
-      type="number" 
-      id="price" 
-      name="price" 
-      value="<%= price || '' %>" 
-      required 
-      step="0.01"
-      placeholder="Enter the price of the vehicle"
-    />
+      <!-- Miles -->
+      <label for="miles">Miles:</label>
+      <input 
+        type="number" 
+        id="miles" 
+        name="miles" 
+        value="<%= miles || '' %>" 
+        required
+        placeholder="Enter the mileage of the vehicle"
+      />
 
-    <!-- Miles -->
-    <label for="miles">Miles:</label>
-    <input 
-      type="number" 
-      id="miles" 
-      name="miles" 
-      value="<%= miles || '' %>" 
-      required
-      placeholder="Enter the mileage of the vehicle"
-    />
+      <!-- Color -->
+      <label for="color">Color:</label>
+      <input 
+        type="text" 
+        id="color" 
+        name="color" 
+        value="<%= color || '' %>" 
+        required
+        placeholder="Enter the color of the vehicle"
+      />
 
-    <!-- Color -->
-    <label for="color">Color:</label>
-    <input 
-      type="text" 
-      id="color" 
-      name="color" 
-      value="<%= color || '' %>" 
-      required
-      placeholder="Enter the color of the vehicle"
-    />
+      <!-- Image Paths -->
+      <label for="image">Image Path:</label>
+      <input 
+        type="text" 
+        id="image" 
+        name="image" 
+        value="<%= image || '/images/vehicles/no-image.png' %>" 
+        required
+        placeholder="Enter the image URL for the vehicle"
+      />
 
-    <!-- Image Paths -->
-    <label for="image">Image Path:</label>
-    <input 
-      type="text" 
-      id="image" 
-      name="image" 
-      value="<%= image || '/images/vehicles/no-image.png' %>" 
-      required
-      placeholder="Enter the image URL for the vehicle"
-    />
+      <label for="thumbnail">Thumbnail Path:</label>
+      <input 
+        type="text" 
+        id="thumbnail" 
+        name="thumbnail" 
+        value="<%= thumbnail || '/images/vehicles/no-image-thumbnail.png' %>" 
+        required
+        placeholder="Enter the thumbnail URL for the vehicle"
+      />
 
-    <label for="thumbnail">Thumbnail Path:</label>
-    <input 
-      type="text" 
-      id="thumbnail" 
-      name="thumbnail" 
-      value="<%= thumbnail || '/images/vehicles/no-image-thumbnail.png' %>" 
-      required
-      placeholder="Enter the thumbnail URL for the vehicle"
-    />
-
-    <!-- Submit Button -->
-    <button type="submit">Add Vehicle</button>
-  </form>
-</div>
+      <!-- Submit Button -->
+      <button type="submit">Add Vehicle</button>
+    </form>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
