@@ -1,32 +1,44 @@
-<div class="box">
-<h1><%= title %></h1>
+<!-- Content Heading -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+} %>
 
-<!-- Flash Message Display -->
-<% if (messages && Array.isArray(messages) && messages.length > 0) { %>
-    <div class="flash-messages">
-        <% messages.forEach(function(msg) { %>
-            <p><%= msg %></p>
-        <% }) %>
-    </div>
+<!-- Flash message -->
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+      <% 
+      let showEmailError = false;
+      errors.array().forEach(error => { 
+          if (error.msg === 'A valid email is required.') {
+              showEmailError = true;
+          } 
+      });
+
+      if (showEmailError) { %>
+          <li>A valid email is required.</li>
+      <% } else {
+          errors.array().forEach(error => { 
+              if (error.msg !== 'Invalid value' && error.msg !== 'A valid email is required.') { %>
+                  <li><%= error.msg %></li>
+              <% }
+          }); 
+      } %>
+  </ul>
 <% } %>
 
-
-<!-- Login Form -->
-<form action="/account/login" method="POST">
-  <!-- Email Input Field -->
-  <label for="account_email">Email:</label>
-  <input type="email" id="account_email" name="account_email" required>
-
-  <!-- Password Input Field -->
-  <label for="account_password">Password:</label>
-  <input type="password" id="account_password" name="account_password" required>
-
-  <!-- Submit Button -->
-  <button type="submit">Login</button>
+<!-- login -->
+<form id="loginForm" action="/account/login" method="post">
+<fieldset class="data-box">
+  <label for="accountEmail">Email Address:</label>
+    <input type="email" name="account_email" id="accountEmail" required value="<%= locals.account_email %>">
+  <label for="accountPassword">Password:<br>
+    <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+  </label>
+</fieldset>
+<button>Login</button>
+<p>No account? <a href="/account/register">Sign-up</a></p>
 </form>
-
-<!-- Registration Link -->
-<p>
-  Don’t have an account? <a href="/account/register">Register here</a>.
-</p>
-</div>

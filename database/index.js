@@ -10,8 +10,10 @@ let pool
 if (process.env.NODE_ENV == "development") {
   pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl:  false
-  })
+    ssl: {
+      rejectUnauthorized: false,
+    },
+})
 
 // Added for troubleshooting queries
 // during development

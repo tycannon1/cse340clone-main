@@ -1,32 +1,27 @@
-<%- include('../partials/header') %>
-<main>
-<div class="management-container">
-
+<!-- Content Heading -->
+<% if (title) { %>
   <h1><%= title %></h1>
-  <p>Add a new classification to your inventory below. The classification name cannot contain spaces or special characters.</p>
+  <% } else {
+    res.redirect('/')
+} %>
 
-  <!-- Flash message for success or error -->
-  <% if (flashMessage) { %>
-    <div class="flash-message">
-      <p><%= flashMessage %></p>
-    </div>
-  <% } %>
+<!-- Message Block -->
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+      <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
+<% } %>
 
-  <!-- Form for adding a new classification -->
-  <form action="/inv/add-classification" method="POST" id="addClassificationForm">
-    <label for="classificationName">Classification Name:</label>
-    <input
-      type="text"
-      id="classificationName"
-      name="classificationName"
-      required
-      pattern="^[a-zA-Z0-9]+$"
-      title="Classification name cannot contain spaces or special characters."
-      placeholder="Enter classification name"
-    />
-
-    <button type="submit">Add Classification</button>
-  </form>
-</div>
-</main>
-<%- include('../partials/footer') %>
+<p class="classificationMessage">FIELD IS REQUIRED.</p>
+<!-- Display form -->
+<form id="loginForm" action="/inv/add-classification" method="post">
+  <div class="data-box">
+      <label for="classification_name">Classification Name</label>
+      <p>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</p> <br>
+      <input type="text" name="classification_name" id="classification_name" pattern="^[A-Za-z]+$" placeholder="e.g. Motorcycle" required value="<%= locals.classification_name %>">
+  </div>    
+  <button>Add Classification</button>
+</form>

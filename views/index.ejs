@@ -1,62 +1,52 @@
-<% if (messages) { %>
-    <% Object.keys(messages).forEach(function(type) { %>
-      <% messages[type].forEach(function(message) { %>
-        <div class="alert <%= type %>">
-          <%= message %>
+<h1 class="welcome-title">Welcome to CSE Motors!</h1>
+
+<%- messages() %>
+
+<div class="vehicle-info">
+    <div class="car-details">
+        <p>DMC Delorean</p>
+        <p>3 Cup Holders<br>
+            Superman doors<br>
+            Fuzzy dices<br>
+        </p>
+        <img class="today" src="/images/site/own_today.png" alt="Own Today Icon">
+    </div>
+    <img class="vehicle" src="/images/vehicles/delorean.jpg" alt="hero">
+</div>
+
+<div class="grid-container"> 
+    <section class="vehicle-reviews"> 
+        <h2>DMC Delorean Reviews</h2>
+
+        <ul class="reviews">
+            <li>• "So fast it's almost like traveling in time." (4/5)</li>
+            <li>• "Coolest ride on the road." (4/5)</li>
+            <li>• "I'm feeling McFly!" (5/5)</li>
+            <li>• "The most futuristic ride of our day." (4.5/5)</li>
+            <li>• "80's livin and I love it!" (5/5)</li>
+        </ul>
+    </section>
+
+    <section class="vehicle-upgrades">
+        <h3 class="upgrade-title">Delorean Upgrades</h3>
+
+        <div class="flux">
+            <img src="/images/upgrades/flux-cap.png" alt="Flux Capacitor">
+            <a href="/" title="Go to flux-cap">Flux Capacitor</a>
         </div>
-      <% }) %>
-    <% }) %>
-  <% } %>
-  
+        <div class="flame">
+            <img src="/images/upgrades/flame.jpg" alt="Flame">
+            <a href="/" title="Go to flame">Flame Decals</a>
+        </div>
+        <div class="bumper">
+            <img src="/images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers">
+            <a href="/" title="Go to Bumper Stickers">Bumper Stickers</a>
+        </div>
+        <div class="hub">
+            <img src="/images/upgrades/hub-cap.jpg" alt="Hub Caps">
+            <a href="/" title="Go to Hub Caps">Hub Caps</a>
+        </div>
 
-<div id="delorean-container">
-    <img src="/images/vehicles/delorean.jpg" alt="Delorean">
-    <div id="DMC">
-        <h2>DMC Delorean</h2>
-        <p>Three Cup Holders</p>
-        <p>Superman Doors</p>
-        <p>Fuzzy Dice</p>
-        <button type="button">Own Today</button>
-    </div>
-</div>
+    </section>
 
-
-
-<div id="reviews-upgrades-container">
-    <div id="reviews">
-        <h1>DMC Delorean Reviews</h1>
-        <ul>
-            <li>"so fast it's almost like traveling in time." (4/5)</li>
-            <li>"Coolest ride on the road." (4/5)</li>
-            <li>"I'm feeling McFly!" (5/5)</li>
-            <li>"The most futuristic ride of our day." (4.5/5)</li>
-            <li>"80s livin and I love it!" (5/5)</li>
-        </ul>
-    </div>
-
-    <div id="upgrades">
-        <h1>Delorean Upgrades</h1>
-        <ul>
-            <li><img src="/images/upgrades/flux-cap.png" alt="Delorean">Flux Capacitor</li>
-            <li><img src="/images/upgrades/flame.jpg" alt="Delorean">Flame Decals</li>
-            <li><img src="/images/upgrades/bumper_sticker.jpg" alt="Delorean">Bumper Stickers</li>
-            <li><img src="/images/upgrades/hub-cap.jpg" alt="Delorean">Hub Caps</li>
-        </ul>
-    </div>
-</div>
-<div id="car-cards">
-    <% if (typeof cars !== 'undefined' && cars.length) { %>
-        <% cars.forEach(car => { %>
-            <div class="car-card">
-                <img src="<%= car.inv_image %>" alt="<%= car.inv_make %> <%= car.inv_model %>">
-                <h2><%= car.inv_make %> <%= car.inv_model %> (<%= car.inv_year %>)</h2>
-                <p><%= car.inv_description %></p>
-                <p>Price: $<%= car.inv_price %></p>
-                <p>Miles: <%= car.inv_miles %></p>
-                <p>Color: <%= car.inv_color %></p>
-            </div>
-        <% }); %>
-    <% } else { %>
-        <p>No cars available in this category.</p>
-    <% } %>
-</div>
+</div>   
