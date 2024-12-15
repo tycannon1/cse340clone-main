@@ -7,29 +7,46 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Rubik", "Helvetica", sans-serif; /* Updated font-family */
+}
+
+html {
+  padding: 20px 70px;
+  background-image:url(../images/site/checkerboard.jpg)
 }
 
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
+  
+  border-radius: 1%;
+  padding: 0 20px;
+  background-color: white;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+#top-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 10px 0 30px 0;
 }
 
-header .siteName {
-  font-size: 1.5em;
-  font-weight: bold;
+.siteName {
+  font-size: 2rem;
+  text-align: left;
 }
 
-header #tools a {
-  font-size: 0.8em;
+.siteName a {
   text-decoration: none;
-  color: #333;
+  color: black;
+  font-family: "Raleway", "Rock Salt", sans-serif;
+}
+
+#tools {
+  font-size: 1rem;
+  text-align: right;
+}
+
+#tools a {
+  text-decoration: none;
+  color: black;
 }
 
 nav ul {
@@ -49,10 +66,9 @@ main {
   padding: 20px;
 }
 
-h1 {
-  font-size: 1.8em;
-  font-weight: bold;
-  text-align: left;
+.welcome-title {
+  font-size: 1.4rem;
+  padding: 15px 0;
 }
 
 #delorean-container {
@@ -60,7 +76,7 @@ h1 {
   width: 100%; /* Adjust based on your layout */
 }
 
-#DMC {
+#delorean-DMC {
   position: absolute;
   top: 10px; /* Adjust the positioning */
   left: 10px; /* Center it more to the left */
@@ -82,7 +98,7 @@ img {
   position: relative;
 }
 
-#DMC button {
+#delorean-DMC button {
   background-color: #007bff;
   color: white;
   padding: 10px;
@@ -90,7 +106,7 @@ img {
   cursor: pointer;
 }
 
-#DMC button:hover {
+#delorean-DMC button:hover {
   background-color: #0056b3;
 }
 
@@ -126,7 +142,6 @@ img {
     justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
     border: 2px solid #333;
-    background-image: url("../images/site/checkerboard.jpg"); /* Replace with your image URL */
     background-size: cover; /* Ensures the image covers the entire element */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -135,7 +150,6 @@ img {
     margin: 0 auto;
     position: relative;
   }
-
 
 footer {
     width: 100%; /* Ensure the footer takes full width */
@@ -158,7 +172,6 @@ footer {
     margin-top: 20px; /* Space above the sections */
     background-color: white;
     padding: 20px;
-
   }
 
   
@@ -172,7 +185,7 @@ footer {
   }
 
   
-  #DMC {
+  #delorean-DMC {
     position: absolute;
     top: 20px; /* Ensure DMC box stays positioned correctly */
     left: 20px; /* Centered-left */
@@ -333,7 +346,7 @@ footer {
   }
 }
 /* Form container box */
-.form-container {
+form#loginForm, form#registerForm, form#deleteForm, form#updateForm {
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -342,6 +355,8 @@ footer {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   background: white;
 }
+
+
 
 /* Title styling */
 .form-container h1 {
@@ -362,71 +377,147 @@ footer {
 
 /* Label styling */
 label {
+  font-size: 1rem;
   font-weight: bold;
   color: #333;
-  display: block;
-  margin-top: 15px;
   margin-bottom: 5px;
+  display: block;
 }
 
-/* Input field styling */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+/* Input and textarea styling */
+input,
+textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
   font-size: 1rem;
 }
 
 /* Button styling */
-button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: #5cb85c;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
+#loginForm button, #registerForm button, #deleteForm button, #updateForm button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
 }
 
-button[type="submit"]:hover {
-  background-color: #4cae4c;
+button:hover {
+  background-color: #0056b3;
 }
 
-/* Link styling */
-p {
-  text-align: center;
-  margin-top: 20px;
+
+.welcome-title {
+  font-size: 3.5rem;
 }
 
-p a {
-  color: #5cb85c;
-  text-decoration: none;
+.vehicle-info {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-p a:hover {
-  text-decoration: underline;
-}
-.box {
-  background-color: white;
-  padding: 3%;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.car-details {
+  padding: 60px 0 0 140px;
+  line-height: 40px;
+  z-index: 2;
 }
 
-.management-container {
-  background-color: #f4f4f4; /* Light gray background */
-  border: 1px solid #ccc; /* Optional border for visibility */
-  border-radius: 8px; /* Rounded corners */
-  padding: 20px; /* Spacing inside the container */
-  margin: 20px auto; /* Center and add space around the container */
-  max-width: 800px; /* Limit the width of the container */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+.car-details p:first-child {
+  font-size: 2.5rem;
+  padding-bottom: 10px;
+}
+
+.car-details p:nth-child(2) {
+  font-size: 2rem;
+  padding-bottom: 40px;
+}
+
+.today {
+  width: 220px;
+  height: 70px;
+}
+
+.vehicle {
+  grid-column: 1/4;
+  width: 1400px;
+  z-index: 1;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  place-content: center;
+  justify-content: center;
+}
+
+.vehicle-upgrades {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.upgrade-title {
+  font-size: 2.4rem;
+  font-weight: bolder;
+  padding: 60px 0;
+}
+
+.vehicle-upgrades div img {
+  width: 200px;
+}
+
+.vehicle-upgrades div a {
+  font-size: 1.5rem;
+}
+
+/* ------Reviews------- */
+
+.vehicle-reviews {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.vehicle-reviews h2 {
+  font-size: 2.4rem;
+  font-weight: bolder;
+  padding: 60px 0;
+}
+
+.reviews li {
+  padding: 5px 0;
+  font-size: 2rem;
+  line-height: 40px;
+}
+
+/* ---------footer------- */
+.footer-text {
+  font-size: 1.5rem;
+}
+
+#inv-display {
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+#inv-display li {
+  width: 25em;
+}
+
+
+#product-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+#inv-display li {
+  width: 25em;
+}
+
+.details {
+  padding: 3rem;
 }
